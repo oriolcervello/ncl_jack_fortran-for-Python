@@ -357,5 +357,6 @@ bparam : rank-2 array('f') with bounds (isize,jsize)
 ```
 
 ## Credit
-Original Creator: Dr. John W. (Jack) Glendening
+Original Creator: Dr. John W. (Jack) Glendening.
+
 ncl_jack_fortran for Python: Oriol Cervelló.
