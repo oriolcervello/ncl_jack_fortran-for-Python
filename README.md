@@ -26,9 +26,37 @@ import ncl_jack_fortran
 
 bparam = ncl_jack_fortran.calc_wblmaxmin(linfo,wa,z,ter,pblh)
 ```
+
+If using [wrf-python](https://wrf-python.readthedocs.io/en/latest/index.html) is needed to traspose all matrix before sending them to the lib. For the original use with NCL the traspose was made automatically.
+
+"For NCL arrays, the fastest-varying dimension is the rightmost, while for Fortran it is the leftmost dimension. Therefore, if XA is a Fortran array dimensioned idim x jdim, this array will be dimensioned jdim x idim in NCL." [More info.](https://www.ncl.ucar.edu/Document/Tools/WRAPIT.shtml)
+
+
+```python
+import numpy as np
+import ncl_jack_fortran
+from wrf import getvar
+
+pblh = getvar(ncfile, "pblh")
+ter = getvar(ncfile, "HGT")
+wa = getvar(ncfile, "wa")
+z = getvar(ncfile, "z")
+
+pblh=np.transpose(pblh.values)
+ter=np.transpose(ter.values)
+wa=np.transpose(wa.values)
+z=np.transpose(z.values)
+
+...
+
+bparam = ncl_jack_fortran.calc_wblmaxmin(linfo,wa,z,ter,pblh)
+```
+
+
 ## Available functions
 
 Available and tested with Python functions in the library.
+
 ```python
 #*** FUNCTION TO CALCULATE W MAX/MIN IN BL (cm/sec) - linfo>0 returns height of Wmax/min
 #***           LINFO 0=w[cm/s] 1=z[m] 2=z-zsfc[m] 3=(z-zsfc)/hbl[%]
