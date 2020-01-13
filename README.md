@@ -9,7 +9,7 @@ For more information about RASP and BLIPMAPs go to [drjack.info](http://www.drja
 
 ## Compilation
 
-The library has been compiled for Python usage with 64-bit OS, with the following comand:
+The library has been compiled for Python usage with Ubuntu 18.04.3 LTS 64-bit OS, with the following comand:
 
 ```
 f2py3.6 -c -m ncl_jack_fortran ncl_jack_fortran.f
